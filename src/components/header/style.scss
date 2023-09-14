@@ -1,0 +1,53 @@
+header{
+    background-color: #000;
+
+    .header{
+        &__container{
+            padding-top: 38px;
+            padding-bottom: 38px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &-full{
+                padding-top: 23px;
+                padding-bottom: 14px;
+
+                .header__logo{
+                    width: 112px;
+                    height: 43px;
+                }
+            }
+
+        }
+
+        &__actions{
+            display: flex;
+            align-items: center;
+            
+            
+            &-item{
+                &:not(:first-child){
+                    margin-left: 38px;
+                }
+                display: flex;
+                align-items: center;
+                justify-content: start;
+                svg{
+                    stroke: white;
+                }
+                span{
+                    color: white;
+                    margin-left: 10px;
+                    font-size: 18px;
+                    font-family: 'Roboto';
+
+                    @media (max-width:500px) {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+}

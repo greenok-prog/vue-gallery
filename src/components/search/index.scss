@@ -1,0 +1,61 @@
+.search{
+    height: 268px;
+    background: #C4C4C4 url('../../assets/search-bg.png') no-repeat;
+    background-size: cover;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    &__input{
+        position: relative;
+        width: 866px;
+        height: 70px;
+        background-color: #fff;
+        padding-right: 38px;
+        @media (max-width:1000px) {
+            width: 500px;
+            
+        }
+        @media (max-width:600px) {
+            width: 90%;
+            
+        }
+        
+        
+        input{
+            width: 780px;
+            height: 100%;
+            
+            border: none;
+            font-size: 24px;
+            padding-left: 38px;
+
+            @media (max-width:1000px) {
+                width: 420px;
+                
+            }
+            @media (max-width:600px) {
+                width: 80%;
+                
+            }
+            
+
+            &::placeholder{
+                font-size: 24px;
+            }
+
+            &:focus{
+                border: none;
+                outline: none;
+            }
+        }
+    }
+    svg{
+        position: absolute;
+        right: 34px;
+        bottom: 24px;
+        cursor: pointer;
+    }
+}
