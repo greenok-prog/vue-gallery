@@ -8,9 +8,14 @@
 import ImageList from '@/components/image-list/index.vue'
 import { useImages } from '@/stores/images';
 import { storeToRefs } from 'pinia';
+import { onMounted } from 'vue';
 
-const store = useImages()
-const { favorite } = storeToRefs(store)
+const { loadFavoriteFromLocal } = useImages()
+const { favorite } = storeToRefs(useImages())
+
+onMounted(() => {
+    loadFavoriteFromLocal()
+})
 </script>
 
 <style lang="scss">

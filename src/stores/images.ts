@@ -28,9 +28,17 @@ export const useImages = defineStore('images', {
         },
         addToFavorite(img:any){
             this.favorite.push(img)
+            localStorage.setItem('favorite', JSON.stringify(this.favorite))
         },
         removeFromFavorite(id:string){
             this.favorite = this.favorite.filter((image) => image.id !== id)
+            localStorage.setItem('favorite', JSON.stringify(this.favorite))
+        },
+        loadFavoriteFromLocal(){
+            const local:any = localStorage.getItem('favorite')
+            //@ts-ignore
+            this.favorite = JSON.parse(local)
+            
         }
 
     },

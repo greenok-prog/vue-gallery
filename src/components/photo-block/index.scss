@@ -8,9 +8,9 @@
         height: 70vh;
         object-fit: cover;
         z-index: -1;
-        background: rgba(0, 0, 0, 0.50);
+        background: rgb(0, 0, 0);
         backdrop-filter: blur(10px);
-        filter:grayscale(100%); 
+        filter:grayscale(120%); 
         @media (max-width:600px) {
             display: none;
         } 
