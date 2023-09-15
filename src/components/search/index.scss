@@ -10,35 +10,35 @@
 
     &__input{
         position: relative;
-        width: 866px;
+        width: 40vw;
         height: 70px;
         background-color: #fff;
         padding-right: 38px;
-        @media (max-width:1000px) {
-            width: 500px;
+        @media (max-width:1200px) {
+            width: 50vw;
             
         }
-        @media (max-width:600px) {
-            width: 85%;
+        @media (max-width:800px) {
+            width: 80vw;
             padding-right: 42px;
             
         }
         
         
         input{
-            width: 780px;
+            width: 80%;
             height: 100%;
             
             border: none;
             font-size: 24px;
             padding-left: 38px;
+            padding-right: 38px;
 
-            @media (max-width:1000px) {
-                width: 420px;
-                
-            }
+             
+            
             @media (max-width:600px) {
                 width: 80%;
+                padding-left: 24px;
                 
             }
             

@@ -42,7 +42,7 @@
         right: 20px;
     }
 
-    @media (max-width:600px) {
+    @media (max-width:700px) {
         display: none;
     }
 }

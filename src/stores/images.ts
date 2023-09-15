@@ -13,23 +13,31 @@ export const useImages = defineStore('images', {
     },
     actions:{
         async fetchRandomImages(page:number){
-            this.loading = true
-            const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/photos/random?count=${9}&page=${page}&client_id=${import.meta.env.VITE_API_KEY}`)
-            data.forEach((el:any) => {
-                this.images.push(el)
-            })
-            this.loading = false
+           try{
+                this.loading = true
+                const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/photos/random?count=${9}&page=${page}&client_id=${import.meta.env.VITE_API_KEY}`)
+                data.forEach((el:any) => {
+                    this.images.push(el)
+                })
+                this.loading = false
+           }catch(e){
+                this.loading = false
+           }
         },
         async fetchImages(keyword:string, page:number){
-            this.loading = true
-            const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/search/photos?query=${keyword}&per_page=${9}&page=${page}&client_id=${import.meta.env.VITE_API_KEY}`)
-            if(this.keyword && keyword){
-                this.images = [...this.images, ...data.results]
-            }else{
-                this.images = data.results
-                this.keyword = keyword
-            }
-            this.loading = false
+           try{
+                this.loading = true
+                const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/search/photos?query=${keyword}&per_page=${9}&page=${page}&client_id=${import.meta.env.VITE_API_KEY}`)
+                if(this.keyword && keyword){
+                    this.images = [...this.images, ...data.results]
+                }else{
+                    this.images = data.results
+                    this.keyword = keyword
+                }
+                this.loading = false
+           }catch(e){
+                this.loading = false
+           }
         },
         async fetchImage(id:string){
             const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/photos/${id}?client_id=${import.meta.env.VITE_API_KEY}`)

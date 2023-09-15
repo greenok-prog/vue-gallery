@@ -13,9 +13,11 @@
 </template>
 
 <script lang="ts" setup>
+import SearchSvg from '@/components/icons/SearchSvg.vue';
 import { ref } from 'vue';
-import SearchSvg from '../icons/SearchSvg.vue';
 import { useImages } from '@/stores/images';
+
+
 const { fetchImages } = useImages()
 const inputValue = ref('')
 

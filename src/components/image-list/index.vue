@@ -3,12 +3,10 @@
         <div class="image-list" v-if="images.length">
             <RouterLink class="image-list__item" :to="`/${image.id}`"
                 v-for="image in images" :key="image.id">
-                <img loading="lazy" :src="image.urls.small"
+                <img loading="lazy" :src="image.urls.raw"
                     :alt="image.alt_description">
             </RouterLink>
         </div>
-
-
         <h3 class="image-list__loader" v-if="loading">
             <LoaderSvg />
         </h3>
@@ -22,9 +20,10 @@ import { useImages } from '@/stores/images';
 import { storeToRefs } from 'pinia';
 import LoaderSvg from '@/components/icons/LoaderSvg.vue'
 
-const props = defineProps<{
+defineProps<{
     images: any[]
 }>()
+
 const store = useImages()
 const { loading } = storeToRefs(store)
 

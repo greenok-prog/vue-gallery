@@ -28,13 +28,15 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue'
 import FavoriteSvg from '../icons/FavoriteSvg.vue';
 import DownloadSvg from '@/components/icons/DownloadSvg.vue'
+import FavoriteActiveSvg from '../icons/FavoriteActiveSvg.vue';
+
+import { onMounted, ref } from 'vue'
 import { useImages } from '@/stores/images';
 import { storeToRefs } from 'pinia';
 import axios from 'axios';
-import FavoriteActiveSvg from '../icons/FavoriteActiveSvg.vue';
+
 const props = defineProps<{
     photo: any
 }>()
@@ -56,18 +58,13 @@ const favoriteHandler = () => {
 const downloadHanlder = async () => {
     isLoading.value = true
     const response = await fetch(downloadUrl.value);
-
     const blobImage = await response.blob();
-
     const href = URL.createObjectURL(blobImage);
-
     const anchorElement = document.createElement('a');
     anchorElement.href = href;
     anchorElement.download = props.photo.slug;
-
     document.body.appendChild(anchorElement);
     anchorElement.click();
-
     document.body.removeChild(anchorElement);
     window.URL.revokeObjectURL(href);
     isLoading.value = false
@@ -76,11 +73,7 @@ const downloadHanlder = async () => {
 onMounted(async () => {
     if (favorite.value.length) {
         const img = favorite.value.find(el => el.id === props.photo.id)
-        if (img.id) {
-            isFavorite.value = true
-        } else {
-            isFavorite.value = false
-        }
+        isFavorite.value = img.id ? true : false
     } else {
         isFavorite.value = false
     }

@@ -20,10 +20,11 @@
 
 <script setup lang="ts">
 import { RouterLink, useRoute } from 'vue-router'
+import { computed } from 'vue';
 import LogoSvg from '../icons/LogoSvg.vue'
 import FavoriteSvg from '../icons/FavoriteSvg.vue'
 import SearchSvg from '../icons/SearchSvg.vue';
-import { computed } from 'vue';
+
 const route = useRoute()
 
 const isMainPage = computed(() => {

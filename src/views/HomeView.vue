@@ -1,25 +1,32 @@
 
 
 <template>
-  <main>
+  <div ref="main">
     <Search />
     <ImageList :images="images" />
     <a href="#header">
       <ButtonTopSvgVue />
     </a>
-  </main>
+  </div>
 </template>
 <script setup lang="ts">
 import Search from '../components/search/index.vue'
 import ImageList from '../components/image-list/index.vue';
+import ButtonTopSvgVue from '@/components/icons/ButtonTopSvg.vue';
 
-import { onBeforeMount, onMounted, ref } from 'vue';
+import { onBeforeMount, onMounted, ref, computed } from 'vue';
+import { useRoute } from 'vue-router';
+
 import { useImages } from '@/stores/images'
 import { storeToRefs } from 'pinia';
-import ButtonTopSvgVue from '@/components/icons/ButtonTopSvg.vue';
+
+
 const { fetchRandomImages, fetchImages } = useImages()
 const { images, keyword } = storeToRefs(useImages())
+
+const route = useRoute()
 const page = ref(1)
+
 const getNextImages = () => {
   window.onscroll = async () => {
     let bottomWindow = document.documentElement.scrollTop + window.innerHeight >= document.documentElement.offsetHeight
@@ -35,8 +42,18 @@ const getNextImages = () => {
     }
   }
 }
+const isMainPage = computed(() => {
+  return route.fullPath === '/' || route.fullPath === '/#header'
+})
+
 onMounted(() => {
-  getNextImages()
+  if (isMainPage) {
+    getNextImages()
+    if (!images.value.length) {
+      window.onscroll = null
+    }
+  }
+
 })
 onBeforeMount(async () => {
   await fetchRandomImages(page.value)
