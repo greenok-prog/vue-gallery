@@ -9,6 +9,13 @@ header{
             justify-content: space-between;
             align-items: center;
 
+            @media (max-width:500px) {
+                padding-top: 17px;
+                padding-bottom: 17px;
+            }   
+
+            
+
             &-full{
                 padding-top: 23px;
                 padding-bottom: 14px;
@@ -20,7 +27,11 @@ header{
             }
 
         }
-
+        &__logo{
+            @media (max-width:500px) {
+                width: 84px;
+            }    
+        }
         &__actions{
             display: flex;
             align-items: center;

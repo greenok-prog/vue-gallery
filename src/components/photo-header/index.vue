@@ -83,7 +83,7 @@ onMounted(async () => {
     } else {
         isFavorite.value = false
     }
-    const { data } = await axios.get(`https://api.unsplash.com/photos/${props.photo.id}/download/?client_id=VUy58TZKB0MpXtRFzGfxcVFkKg-IAgKXbwDsFryNQ-U`)
+    const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/photos/${props.photo.id}/download/?client_id=${import.meta.env.VITE_API_KEY}`)
     downloadUrl.value = data.url
 
 })

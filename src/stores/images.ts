@@ -11,11 +11,11 @@ export const useImages = defineStore('images', {
     },
     actions:{
         async fetchRandomImages(){
-            const {data} = await axios.get('https://api.unsplash.com/photos/random?count=8&client_id=VUy58TZKB0MpXtRFzGfxcVFkKg-IAgKXbwDsFryNQ-U')
+            const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/photos/random?count=8&client_id=${import.meta.env.VITE_API_KEY}`)
             this.images = data
         },
         async fetchImages(keyword:string){
-            const {data} = await axios.get(`https://api.unsplash.com/search/photos?query=${keyword}&per_page=8&client_id=VUy58TZKB0MpXtRFzGfxcVFkKg-IAgKXbwDsFryNQ-U`)
+            const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/search/photos?query=${keyword}&per_page=8&client_id=${import.meta.env.VITE_API_KEY}`)
             this.images = data.results
             
         },
@@ -23,7 +23,7 @@ export const useImages = defineStore('images', {
             if(this.currentImage){
                 this.currentImage = null
             }
-            const {data} = await axios.get(`https://api.unsplash.com/photos/${id}?client_id=VUy58TZKB0MpXtRFzGfxcVFkKg-IAgKXbwDsFryNQ-U`)
+            const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/photos/${id}?client_id=${import.meta.env.VITE_API_KEY}`)
             this.currentImage = data
         },
         addToFavorite(img:any){

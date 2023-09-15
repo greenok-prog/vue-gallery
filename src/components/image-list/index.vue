@@ -8,7 +8,7 @@
             </RouterLink>
 
         </div>
-        <h1 v-else>Ничего не найдено</h1>
+        <h3 v-else>Ничего не найдено</h3>
     </div>
 </template>
 
