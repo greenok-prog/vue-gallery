@@ -3,10 +3,10 @@
 <template>
     <div class="search">
         <div class="container">
-            <div class="search__input">
+            <form class="search__input" @submit="(e) => searchHandler(e)">
                 <input placeholder="Поиск" v-model="inputValue" />
-                <SearchSvg @click="searchHandler" />
-            </div>
+                <SearchSvg />
+            </form>
         </div>
 
     </div>
@@ -19,9 +19,10 @@ import { useImages } from '@/stores/images';
 const { fetchImages } = useImages()
 const inputValue = ref('')
 
-const searchHandler = async () => {
+const searchHandler = async (e: Event) => {
+    e.preventDefault()
     if (inputValue.value.length) {
-        await fetchImages(inputValue.value)
+        await fetchImages(inputValue.value, 1)
         inputValue.value = ''
     }
 }

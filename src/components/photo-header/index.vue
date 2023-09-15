@@ -13,9 +13,9 @@
             </div>
             <div class="photo-header__actions">
                 <button @click="favoriteHandler"
-                    class="photo-header__actions-fav"
-                    :class="{ 'photo-header__actions-fav_active': isFavorite }">
-                    <FavoriteSvg />
+                    class="photo-header__actions-fav">
+                    <FavoriteActiveSvg v-if="isFavorite" />
+                    <FavoriteSvg v-else />
                 </button>
                 <button :disabled="isLoading" @click="downloadHanlder()"
                     class="photo-header__actions-download">
@@ -34,6 +34,7 @@ import DownloadSvg from '@/components/icons/DownloadSvg.vue'
 import { useImages } from '@/stores/images';
 import { storeToRefs } from 'pinia';
 import axios from 'axios';
+import FavoriteActiveSvg from '../icons/FavoriteActiveSvg.vue';
 const props = defineProps<{
     photo: any
 }>()

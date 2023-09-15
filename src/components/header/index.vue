@@ -1,5 +1,5 @@
 <template>
-    <header>
+    <header id="header">
         <div class="container header__container"
             :class="{ 'header__container-full': !isMainPage }">
             <LogoSvg class="header__logo" />
@@ -27,7 +27,7 @@ import { computed } from 'vue';
 const route = useRoute()
 
 const isMainPage = computed(() => {
-    return route.fullPath === '/'
+    return route.fullPath === '/' || route.fullPath === '/#header'
 })
 
 </script>

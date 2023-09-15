@@ -10,7 +10,21 @@
     @media (max-width:500px) {
         grid-template-columns: 1fr;
     }
-   
+    &__loader{
+        margin-top: 72px;
+        padding-bottom: 42px;
+        svg{
+            animation: rotation 2s infinite linear;
+        }
+    }
+    @keyframes rotation {
+        from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(359deg);
+          }
+    }
     &__item{
         height: 400px;
         

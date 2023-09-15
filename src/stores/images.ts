@@ -6,23 +6,32 @@ export const useImages = defineStore('images', {
         return {
             favorite:[] as any[],
             images:[] as any[],
-            currentImage:null as any
+            currentImage:null as any,
+            keyword:null as null | string,
+            loading:false as boolean,
         }
     },
     actions:{
-        async fetchRandomImages(){
-            const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/photos/random?count=8&client_id=${import.meta.env.VITE_API_KEY}`)
-            this.images = data
+        async fetchRandomImages(page:number){
+            this.loading = true
+            const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/photos/random?count=${9}&page=${page}&client_id=${import.meta.env.VITE_API_KEY}`)
+            data.forEach((el:any) => {
+                this.images.push(el)
+            })
+            this.loading = false
         },
-        async fetchImages(keyword:string){
-            const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/search/photos?query=${keyword}&per_page=8&client_id=${import.meta.env.VITE_API_KEY}`)
-            this.images = data.results
-            
+        async fetchImages(keyword:string, page:number){
+            this.loading = true
+            const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/search/photos?query=${keyword}&per_page=${9}&page=${page}&client_id=${import.meta.env.VITE_API_KEY}`)
+            if(this.keyword && keyword){
+                this.images = [...this.images, ...data.results]
+            }else{
+                this.images = data.results
+                this.keyword = keyword
+            }
+            this.loading = false
         },
         async fetchImage(id:string){
-            if(this.currentImage){
-                this.currentImage = null
-            }
             const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/photos/${id}?client_id=${import.meta.env.VITE_API_KEY}`)
             this.currentImage = data
         },
