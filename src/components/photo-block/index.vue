@@ -26,6 +26,7 @@ const { currentImage } = storeToRefs(useImages())
 const router = useRoute()
 
 onMounted(async () => {
+    // @ts-ignore
     await fetchImage(router.params.id)
     console.log(currentImage.value);
 
