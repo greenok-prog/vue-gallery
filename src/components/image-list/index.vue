@@ -3,7 +3,7 @@
         <div class="image-list" v-if="images.length">
             <RouterLink class="image-list__item" :to="`/${image.id}`"
                 v-for="image in images" :key="image.id">
-                <img loading="lazy" :src="image.urls.raw"
+                <img :src="image.urls.regular"
                     :alt="image.alt_description">
             </RouterLink>
         </div>

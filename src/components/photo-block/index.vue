@@ -5,7 +5,7 @@
         <PhotoHeader :photo="currentImage" />
         <div class="container">
             <div class="photo-block__image">
-                <img :src="currentImage.urls.raw" />
+                <img loading="lazy" :src="currentImage.urls.regular" />
                 <MaximizeSvgVue class="photo-block__max" />
             </div>
 

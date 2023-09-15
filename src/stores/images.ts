@@ -40,6 +40,9 @@ export const useImages = defineStore('images', {
            }
         },
         async fetchImage(id:string){
+            if(this.currentImage){
+                this.currentImage = null
+            }
             const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/photos/${id}?client_id=${import.meta.env.VITE_API_KEY}`)
             this.currentImage = data
         },

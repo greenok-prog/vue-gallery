@@ -47,16 +47,17 @@ const isMainPage = computed(() => {
 })
 
 onMounted(() => {
-  if (isMainPage) {
-    getNextImages()
-    if (!images.value.length) {
-      window.onscroll = null
-    }
+  if (!images.value.length) {
+    window.onscroll = null
   }
 
 })
 onBeforeMount(async () => {
   await fetchRandomImages(page.value)
+  if (isMainPage) {
+    getNextImages()
+
+  }
 })
 
 </script>
