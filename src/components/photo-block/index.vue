@@ -4,9 +4,10 @@
             alt="">
         <PhotoHeader :photo="currentImage" />
         <div class="container">
-            <img class="photo-block__image"
-                :src="currentImage.urls.raw" />
-
+            <div class="photo-block__image">
+                <img :src="currentImage.urls.raw" />
+                <MaximizeSvgVue class="photo-block__max" />
+            </div>
 
         </div>
     </div>
@@ -14,10 +15,12 @@
 
 <script lang="ts" setup>
 import PhotoHeader from '@/components/photo-header/index.vue'
+import MaximizeSvgVue from '@/components/icons/MaximizeSvg.vue';
+
 import { onMounted } from 'vue';
 import { useRoute } from 'vue-router';
-import { storeToRefs } from 'pinia';
 
+import { storeToRefs } from 'pinia';
 import { useImages } from '@/stores/images'
 
 

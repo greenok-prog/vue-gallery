@@ -38,6 +38,10 @@
     right: 80px;
     bottom: 40px;
 
+    @media (max-width:1750px) {
+        right: 20px;
+    }
+
     @media (max-width:600px) {
         display: none;
     }
