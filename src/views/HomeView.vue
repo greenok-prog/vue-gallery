@@ -35,9 +35,9 @@ const getNextImages = () => {
       if (!keyword.value) {
         await fetchRandomImages(page.value)
       } else {
-        if (keyword.value) {
-          await fetchImages(keyword.value, page.value)
-        }
+
+        await fetchImages(keyword.value, page.value)
+
       }
     }
   }
