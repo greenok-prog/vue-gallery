@@ -31,7 +31,7 @@ export const useImages = defineStore('images', {
            try{
                 this.loading = true
                 const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/search/photos?query=${keyword}&per_page=${9}&page=${page}&client_id=${import.meta.env.VITE_API_KEY}`)
-                if(this.keyword && keyword){
+                if(this.keyword && keyword && keyword === this.keyword){
                     this.images = [...this.images, ...data.results]
                 }else{
                     this.images = data.results
