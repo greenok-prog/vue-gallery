@@ -16,7 +16,7 @@ const { loadFavoriteFromLocal } = useImages()
 const { favorite } = storeToRefs(useImages())
 
 onMounted(() => {
-    window.onscroll = () => { }
+    window.onscroll = null
     loadFavoriteFromLocal()
 })
 </script>

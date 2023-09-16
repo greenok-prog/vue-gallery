@@ -22,7 +22,7 @@ import { storeToRefs } from 'pinia';
 
 
 const { fetchRandomImages, fetchImages } = useImages()
-const { images, keyword } = storeToRefs(useImages())
+const { images, keyword, error } = storeToRefs(useImages())
 
 const route = useRoute()
 const page = ref(1)
@@ -35,9 +35,7 @@ const getNextImages = () => {
       if (!keyword.value) {
         await fetchRandomImages(page.value)
       } else {
-
         await fetchImages(keyword.value, page.value)
-
       }
     }
   }
@@ -54,9 +52,8 @@ onMounted(() => {
 })
 onBeforeMount(async () => {
   await fetchRandomImages(page.value)
-  if (isMainPage) {
+  if (isMainPage && error.value === false) {
     getNextImages()
-
   }
 })
 

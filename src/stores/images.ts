@@ -9,6 +9,7 @@ export const useImages = defineStore('images', {
             currentImage:null as any,
             keyword:null as null | string,
             loading:false as boolean,
+            error:false as boolean
         }
     },
     actions:{
@@ -20,8 +21,10 @@ export const useImages = defineStore('images', {
                     this.images.push(el)
                 })
                 this.loading = false
+                this.error = false
            }catch(e){
                 this.loading = false
+                this.error = true
            }
         },
         async fetchImages(keyword:string, page:number){
@@ -33,10 +36,12 @@ export const useImages = defineStore('images', {
                 }else{
                     this.images = data.results
                     this.keyword = keyword
+                    this.error = false
                 }
                 this.loading = false
            }catch(e){
                 this.loading = false
+                this.error = true
            }
         },
         async fetchImage(id:string){

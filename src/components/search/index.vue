@@ -5,7 +5,7 @@
         <div class="container">
             <form class="search__input" @submit="(e) => searchHandler(e)">
                 <input placeholder="Поиск" v-model="inputValue" />
-                <SearchSvg />
+                <SearchSvg @click="e => searchHandler(e)" />
             </form>
         </div>
 

@@ -73,7 +73,7 @@ const downloadHanlder = async () => {
 onMounted(async () => {
     if (favorite.value.length) {
         const img = favorite.value.find(el => el.id === props.photo.id)
-        if (img.id) {
+        if (img) {
             isFavorite.value = true
         } else {
             isFavorite.value = false
