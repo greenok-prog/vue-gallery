@@ -4,7 +4,7 @@
   <div ref="main">
     <Search />
     <ImageList :images="images" />
-    <a href="#header">
+    <a v-if="topBtnVisible" href="#header">
       <ButtonTopSvgVue />
     </a>
   </div>
@@ -26,6 +26,16 @@ const { images, keyword, error } = storeToRefs(useImages())
 
 const route = useRoute()
 const page = ref(1)
+const topBtnVisible = ref(false)
+const topButtonObserver = new IntersectionObserver((entries, obs) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) {
+      topBtnVisible.value = true
+    } else {
+      topBtnVisible.value = false
+    }
+  })
+})
 
 const getNextImages = () => {
   window.onscroll = async () => {
@@ -48,6 +58,8 @@ onMounted(() => {
   if (!images.value.length) {
     window.onscroll = null
   }
+  const header: any = document.querySelector('#header')
+  topButtonObserver.observe(header)
 
 })
 onBeforeMount(async () => {
